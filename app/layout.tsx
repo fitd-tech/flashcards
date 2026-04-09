@@ -35,10 +35,11 @@ const SCOPES = [
   "https://www.googleapis.com/auth/drive.file",
 ];
 
-console.log("process.env.GOOGLE_PRIVATE_KEY", process.env.GOOGLE_PRIVATE_KEY);
 const jwtFromEnv = new JWT({
   email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  key: process.env.GOOGLE_PRIVATE_KEY,
+  key: process.env.GOOGLE_PRIVATE_KEY
+    ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n")
+    : process.env.GOOGLE_PRIVATE_KEY,
   scopes: SCOPES,
 });
 
