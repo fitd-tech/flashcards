@@ -139,7 +139,7 @@ export default function Home() {
       )}
       {currentRow?.answerLine2 && (
         <>
-          <div>-</div>
+          <div className="select-none">-</div>
           <div className="text-lg text-center select-none">
             {currentRow?.answerLine2}
           </div>
@@ -147,7 +147,7 @@ export default function Home() {
       )}
       {currentRow?.answerLine3 && (
         <>
-          <div>-</div>
+          <div className="select-none">-</div>
           <div className="text-lg text-center select-none">
             {currentRow?.answerLine3}
           </div>
@@ -155,7 +155,7 @@ export default function Home() {
       )}
       {currentRow?.answerLine4 && (
         <>
-          <div>-</div>
+          <div className="select-none">-</div>
           <div className="text-lg text-center select-none">
             {currentRow?.answerLine4}
           </div>
@@ -163,7 +163,7 @@ export default function Home() {
       )}
       {currentRow?.answerLine5 && (
         <>
-          <div>-</div>
+          <div className="select-none">-</div>
           <div className="text-lg text-center select-none">
             {currentRow?.answerLine5}
           </div>
@@ -171,7 +171,7 @@ export default function Home() {
       )}
       {currentRow?.answerLine6 && (
         <>
-          <div>-</div>
+          <div className="select-none">-</div>
           <div className="text-lg text-center select-none">
             {currentRow?.answerLine6}
           </div>
@@ -179,7 +179,7 @@ export default function Home() {
       )}
       {currentRow?.answerLine7 && (
         <>
-          <div>-</div>
+          <div className="select-none">-</div>
           <div className="text-lg text-center select-none">
             {currentRow?.answerLine7}
           </div>
@@ -187,7 +187,7 @@ export default function Home() {
       )}
       {currentRow?.answerLine8 && (
         <>
-          <div>-</div>
+          <div className="select-none">-</div>
           <div className="text-lg text-center select-none">
             {currentRow?.answerLine8}
           </div>
@@ -197,7 +197,7 @@ export default function Home() {
   );
 
   return (
-    <div className="flex gap-4 justify-center items-center w-full">
+    <div className="flex gap-4 justify-center items-center w-full pl-4 pr-4">
       <ThemeModeToggle className="absolute top-2 right-2" />
       <Button
         variant="outline"
@@ -208,12 +208,14 @@ export default function Home() {
       >
         <ArrowLeftIcon />
       </Button>
-      <Card
-        onClick={handleFlipCard}
-        className={`flex flex-col items-center justify-center w-1/3 min-h-60 hover:border hover:filter hover:drop-shadow-md hover:drop-shadow-blue-900 cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""}`}
-      >
-        {currentSide === FRONT ? frontOfCard : backOfCard}
-      </Card>
+      <div className="h-96 max-h-dvh min-h-0 w-dvw md:w-2/3 lg:w-1/2 pt-2 pb-2">
+        <Card
+          onClick={handleFlipCard}
+          className={`flex flex-col items-center justify-center w-full h-full hover:border hover:filter hover:drop-shadow-md hover:drop-shadow-blue-900 cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""}`}
+        >
+          {currentSide === FRONT ? frontOfCard : backOfCard}
+        </Card>
+      </div>
       <Button
         variant="outline"
         size="icon"
