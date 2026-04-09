@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  transpilePackages: ["geist"], // Fixes font loading issues for older builds
 };
 
 export default nextConfig;

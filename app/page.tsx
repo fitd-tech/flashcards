@@ -1,6 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ThemeModeToggle } from "@/components/ui/theme-mode-toggle";
+import {
+  GoogleSpreadsheetContext,
+  SerializableRow,
+  SerializableRowData,
+} from "@/providers/GoogleWorksheetContext";
+import { Button } from "@/components/ui/button";
+import { ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon } from "lucide-react";
 
 type Card = {
   id: number;
@@ -13,24 +30,24 @@ type Card = {
 const cards: Card[] = [
   {
     id: 1,
-    title: "2026 Colorado",
-    subtitle: "Some information",
-    prompt: "Engine",
-    answer: "Some engine",
+    title: "cat",
+    subtitle: "",
+    prompt: "",
+    answer: "meow",
   },
   {
     id: 2,
-    title: "2025 Tahoe",
-    subtitle: "Some other information",
-    prompt: "Trunk space",
-    answer: "A lot",
+    title: "dog",
+    subtitle: "",
+    prompt: "",
+    answer: "woof",
   },
   {
     id: 3,
-    title: "2026 Equinox",
-    subtitle: "More information",
-    prompt: "Engine size",
-    answer: "woah",
+    title: "duck",
+    subtitle: "",
+    prompt: "",
+    answer: "quack",
   },
 ];
 
@@ -38,28 +55,35 @@ const FRONT = "front";
 const BACK = "back";
 
 export default function Home() {
-  const [currentCardId, setCurrentCardId] = useState(1);
+  const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [currentSide, setCurrentSide] = useState(FRONT);
 
-  function handleGoBack() {
+  const rows = useContext(GoogleSpreadsheetContext);
+  console.log("rows from context", rows);
+
+  const handleGoBack = useCallback(() => {
     setCurrentSide(FRONT);
-    setCurrentCardId((previous) => {
-      if (previous === 1) {
-        return cards.length;
+    setCurrentRowIndex((previous) => {
+      if (!rows) {
+        return previous;
+      } else if (previous === 0) {
+        return rows.length - 1;
       }
       return previous - 1;
     });
-  }
+  }, [rows]);
 
-  function handleGoForward() {
+  const handleGoForward = useCallback(() => {
     setCurrentSide(FRONT);
-    setCurrentCardId((previous) => {
-      if (previous === cards.length) {
-        return 1;
+    setCurrentRowIndex((previous) => {
+      if (!rows) {
+        return previous;
+      } else if (previous === rows.length - 1) {
+        return 0;
       }
       return previous + 1;
     });
-  }
+  }, [rows]);
 
   function handleFlipCard() {
     setCurrentSide((previous) => (previous === FRONT ? BACK : FRONT));
@@ -80,41 +104,125 @@ export default function Home() {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [handleGoBack, handleGoForward]);
 
-  const currentCard: Card =
-    cards.find((card) => card.id === currentCardId) || cards[0];
+  const currentRow: SerializableRow | null = rows
+    ? rows[currentRowIndex]
+    : null;
   const frontOfCard = (
     <>
-      <div className="text-3xl font-bold select-none">{currentCard.title}</div>
-      <div className="text-xl font-semibold select-none">
-        {currentCard.subtitle}
-      </div>
-      <div className="select-none">{currentCard.prompt}</div>
+      {currentRow?.promptTitle && (
+        <div className="text-2xl font-bold select-none">
+          {currentRow?.promptTitle}
+        </div>
+      )}
+      {currentRow?.promptSubtitle && (
+        <div className="text-xl font-semibold select-none">
+          {currentRow?.promptSubtitle}
+        </div>
+      )}
+      {currentRow?.prompt && (
+        <div className="text-2xl font-semibold select-none">
+          {currentRow?.prompt}
+        </div>
+      )}
     </>
   );
-  const backOfCard = <div className="select-none">{currentCard.answer}</div>;
+  const backOfCard = (
+    <div className="flex flex-col justify-center items-center">
+      {currentRow?.answerLine1 && (
+        <>
+          <div className="text-lg text-center select-none">
+            {currentRow?.answerLine1}
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine2 && (
+        <>
+          <div>-</div>
+          <div className="text-lg text-center select-none">
+            {currentRow?.answerLine2}
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine3 && (
+        <>
+          <div>-</div>
+          <div className="text-lg text-center select-none">
+            {currentRow?.answerLine3}
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine4 && (
+        <>
+          <div>-</div>
+          <div className="text-lg text-center select-none">
+            {currentRow?.answerLine4}
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine5 && (
+        <>
+          <div>-</div>
+          <div className="text-lg text-center select-none">
+            {currentRow?.answerLine5}
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine6 && (
+        <>
+          <div>-</div>
+          <div className="text-lg text-center select-none">
+            {currentRow?.answerLine6}
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine7 && (
+        <>
+          <div>-</div>
+          <div className="text-lg text-center select-none">
+            {currentRow?.answerLine7}
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine8 && (
+        <>
+          <div>-</div>
+          <div className="text-lg text-center select-none">
+            {currentRow?.answerLine8}
+          </div>
+        </>
+      )}
+    </div>
+  );
 
   return (
     <div className="flex gap-4 justify-center items-center w-full">
-      <div
+      <ThemeModeToggle className="absolute top-2 right-2" />
+      <Button
+        variant="outline"
+        size="icon"
+        aria-label="Go back"
         onClick={handleGoBack}
-        className="text-6xl cursor-pointer select-none"
+        className="cursor-pointer"
       >
-        &lt;
-      </div>
-      <div
+        <ArrowLeftIcon />
+      </Button>
+      <Card
         onClick={handleFlipCard}
-        className="flex flex-col items-center justify-center w-1/3 min-h-60 rounded-lg border border-blue-400"
+        className={`flex flex-col items-center justify-center w-1/3 min-h-60 hover:border hover:filter hover:drop-shadow-md hover:drop-shadow-blue-900 cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""}`}
       >
         {currentSide === FRONT ? frontOfCard : backOfCard}
-      </div>
-      <div
+      </Card>
+      <Button
+        variant="outline"
+        size="icon"
+        aria-label="Go forward"
         onClick={handleGoForward}
-        className="text-6xl cursor-pointer select-none"
+        className="cursor-pointer"
       >
-        &gt;
-      </div>
+        <ArrowRightIcon />
+      </Button>
     </div>
   );
 }
