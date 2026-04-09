@@ -112,17 +112,17 @@ export default function Home() {
   const frontOfCard = (
     <>
       {currentRow?.promptTitle && (
-        <div className="text-2xl font-bold select-none">
+        <div className="text-2xl font-bold  items-center select-none">
           {currentRow?.promptTitle}
         </div>
       )}
       {currentRow?.promptSubtitle && (
-        <div className="text-xl font-semibold select-none">
+        <div className="text-xl font-semibold  items-center select-none">
           {currentRow?.promptSubtitle}
         </div>
       )}
       {currentRow?.prompt && (
-        <div className="text-2xl font-semibold select-none">
+        <div className="text-2xl font-semibold  items-center select-none">
           {currentRow?.prompt}
         </div>
       )}
