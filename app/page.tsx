@@ -15,6 +15,7 @@ import { GoogleSpreadsheetContext } from "@/providers/GoogleWorksheetContextProv
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon, ArrowRightIcon, RefreshCcw } from "lucide-react";
 import { SerializableRow } from "@/types";
+import { Spinner } from "@/components/ui/spinner";
 
 type Card = {
   id: number;
@@ -31,7 +32,11 @@ export default function Home() {
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [currentSide, setCurrentSide] = useState(FRONT);
 
-  const { data: rows, refresh } = useContext(GoogleSpreadsheetContext) || {};
+  const {
+    loading,
+    data: rows,
+    refresh,
+  } = useContext(GoogleSpreadsheetContext) || {};
   console.log("rows from context", rows);
 
   const handleGoBack = useCallback(() => {
@@ -169,6 +174,14 @@ export default function Home() {
     </div>
   );
 
+  function renderCardContent() {
+    if (loading) {
+      return <Spinner />;
+    } else {
+      return currentSide === FRONT ? frontOfCard : backOfCard;
+    }
+  }
+
   return (
     <div className="flex gap-4 justify-center items-center w-full pl-4 pr-4">
       <Button
@@ -195,7 +208,7 @@ export default function Home() {
           onClick={handleFlipCard}
           className={`flex flex-col items-center justify-center w-full h-full hover:border cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""}`}
         >
-          {currentSide === FRONT ? frontOfCard : backOfCard}
+          {renderCardContent()}
         </Card>
       </div>
       <Button
