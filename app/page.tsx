@@ -11,13 +11,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ThemeModeToggle } from "@/components/ui/theme-mode-toggle";
-import {
-  GoogleSpreadsheetContext,
-  SerializableRow,
-  SerializableRowData,
-} from "@/providers/GoogleWorksheetContext";
+import { GoogleSpreadsheetContext } from "@/providers/GoogleWorksheetContextProvider";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, RefreshCcw } from "lucide-react";
+import { SerializableRow } from "@/types";
 
 type Card = {
   id: number;
@@ -27,30 +24,6 @@ type Card = {
   answer: string;
 };
 
-const cards: Card[] = [
-  {
-    id: 1,
-    title: "cat",
-    subtitle: "",
-    prompt: "",
-    answer: "meow",
-  },
-  {
-    id: 2,
-    title: "dog",
-    subtitle: "",
-    prompt: "",
-    answer: "woof",
-  },
-  {
-    id: 3,
-    title: "duck",
-    subtitle: "",
-    prompt: "",
-    answer: "quack",
-  },
-];
-
 const FRONT = "front";
 const BACK = "back";
 
@@ -58,7 +31,7 @@ export default function Home() {
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [currentSide, setCurrentSide] = useState(FRONT);
 
-  const rows = useContext(GoogleSpreadsheetContext);
+  const { data: rows, refresh } = useContext(GoogleSpreadsheetContext) || {};
   console.log("rows from context", rows);
 
   const handleGoBack = useCallback(() => {
@@ -198,7 +171,16 @@ export default function Home() {
 
   return (
     <div className="flex gap-4 justify-center items-center w-full pl-4 pr-4">
-      <ThemeModeToggle className="absolute top-2 right-2" />
+      <Button
+        variant="outline"
+        size="icon"
+        aria-label="Refresh & shuffle"
+        onClick={refresh}
+        className="absolute top-2 left-2 cursor-pointer"
+      >
+        <RefreshCcw />
+      </Button>
+      <ThemeModeToggle className="absolute top-2 right-2 cursor-pointer" />
       <Button
         variant="outline"
         size="icon"
@@ -211,7 +193,7 @@ export default function Home() {
       <div className="h-96 max-h-dvh min-h-0 w-dvw md:w-2/3 lg:w-1/2 pt-2 pb-2">
         <Card
           onClick={handleFlipCard}
-          className={`flex flex-col items-center justify-center w-full h-full hover:border hover:filter hover:drop-shadow-md hover:drop-shadow-blue-900 cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""}`}
+          className={`flex flex-col items-center justify-center w-full h-full hover:border cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""}`}
         >
           {currentSide === FRONT ? frontOfCard : backOfCard}
         </Card>
