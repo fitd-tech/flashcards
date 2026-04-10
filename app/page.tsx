@@ -174,6 +174,11 @@ export default function Home() {
     </div>
   );
 
+  function handleRefresh() {
+    refresh?.();
+    setCurrentSide(FRONT);
+  }
+
   function renderCardContent() {
     if (loading) {
       return <Spinner />;
@@ -188,7 +193,7 @@ export default function Home() {
         variant="outline"
         size="icon"
         aria-label="Refresh & shuffle"
-        onClick={refresh}
+        onClick={handleRefresh}
         className="absolute top-2 left-2 cursor-pointer"
       >
         <RefreshCcw />
