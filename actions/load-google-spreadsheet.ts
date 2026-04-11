@@ -27,6 +27,7 @@ export async function loadGoogleSpreadsheet(
   const spreadsheetId = spreadsheetSlug
     ? process.env[spreadsheetSlugToEnvVar[spreadsheetSlug]]
     : null;
+  console.log("spreadsheetId", spreadsheetId);
   const lithiaSalesRepresentativeSpreadsheet = spreadsheetId
     ? new GoogleSpreadsheet(spreadsheetId, jwtFromEnv)
     : null;
