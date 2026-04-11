@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
-import { GoogleSpreadsheetContextProvider } from "@/providers/GoogleWorksheetContextProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,16 +30,14 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-dvh max-h-dvh antialiased`}
       suppressHydrationWarning
     >
-      <body className="h-dvh max-h-dvh min-h-dvh flex flex-col items-center justify-center pt-2 pb-2">
+      <body className="flex flex-col items-center justify-center h-dvh max-h-dvh min-h-dvh pt-2 pb-2">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <GoogleSpreadsheetContextProvider>
-            {children}
-          </GoogleSpreadsheetContextProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>
