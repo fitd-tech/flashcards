@@ -10,11 +10,11 @@ export default function Home() {
     <>
       <ThemeModeToggle className="absolute top-2 right-2 cursor-pointer" />
       <TypographyH1 className="mb-10">Flashcards</TypographyH1>
-      <Link href={`/deck/vehicle-specs`} className="mb-2">
-        <Button>Vehicle Specs</Button>
-      </Link>
       <Link href={`/deck/sales-representative`} className="mb-2">
         <Button>Sales Representative</Button>
+      </Link>
+      <Link href={`/deck/vehicle-specs`} className="mb-2">
+        <Button>Vehicle Specs</Button>
       </Link>
     </>
   );
