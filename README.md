@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Adding new decks
+
+1. Create a new Google Sheet using the template, or by copying another sheet and removing or replacing the data below the headers.
+2. Copy the sheet ID from the address bar. (it's the slug)
+3. Add the sheet ID to your .env.local file using the convention you have chosen.
+4. Add the sheet ID to /utilities/constants.ts, along with slug-like ID as the key.
+5. Create a new button in /app/page.tsx with an href to the slug key you just creatd.
+6. Add the env variable to the Vercel project under Settings -> Environment Variables using the same key as your local env. Under Environments, remove Development, and toggle Sensitive to true. (this prevents unauthorized users from attempting to hit our Google Cloud service agent)
+7. Populate the Google Sheet you created with your intended learning data.
+
 ## Getting Started
 
 First, run the development server:
