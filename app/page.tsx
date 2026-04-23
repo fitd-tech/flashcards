@@ -13,6 +13,9 @@ export default function Home() {
       <Link href={`/deck/sales-representative`} className="mb-2">
         <Button>Sales Representative</Button>
       </Link>
+      <Link href={`/deck/andy-elliott-objections`} className="mb-2">
+        <Button>Andy Elliott Objections</Button>
+      </Link>
       <Link href={`/deck/vehicle-specs`} className="mb-2">
         <Button>Vehicle Specs</Button>
       </Link>
