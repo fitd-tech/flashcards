@@ -18,33 +18,40 @@ export async function shuffleGoogleSpreadsheetRows(
     const worksheet = spreadsheet.sheetsByIndex[0]; // or use `doc.sheetsById[id]` or `doc.sheetsByTitle[title]`
     const rows = await worksheet.getRows();
     console.log("rows", rows);
-    const orderedSerializableRowData = rows.map((row) => {
-      const promptTitle = row.get("prompt_title");
-      const promptSubtitle = row.get("prompt_subtitle");
-      const prompt = row.get("prompt");
-      const answerLine1 = row.get("answer_line_1");
-      const answerLine2 = row.get("answer_line_2");
-      const answerLine3 = row.get("answer_line_3");
-      const answerLine4 = row.get("answer_line_4");
-      const answerLine5 = row.get("answer_line_5");
-      const answerLine6 = row.get("answer_line_6");
-      const answerLine7 = row.get("answer_line_7");
-      const answerLine8 = row.get("answer_line_8");
+    const orderedSerializableRowData = rows
+      .filter((row) => {
+        const published = row.get("published");
+        return published === "TRUE";
+      })
+      .map((row) => {
+        const promptTitle = row.get("prompt_title");
+        const promptSubtitle = row.get("prompt_subtitle");
+        const prompt = row.get("prompt");
+        const answerLine1 = row.get("answer_line_1");
+        const answerLine2 = row.get("answer_line_2");
+        const answerLine3 = row.get("answer_line_3");
+        const answerLine4 = row.get("answer_line_4");
+        const answerLine5 = row.get("answer_line_5");
+        const answerLine6 = row.get("answer_line_6");
+        const answerLine7 = row.get("answer_line_7");
+        const answerLine8 = row.get("answer_line_8");
+        const answerLine9 = row.get("answer_line_9");
 
-      return {
-        promptTitle,
-        promptSubtitle,
-        prompt,
-        answerLine1,
-        answerLine2,
-        answerLine3,
-        answerLine4,
-        answerLine5,
-        answerLine6,
-        answerLine7,
-        answerLine8,
-      };
-    });
+        return {
+          promptTitle,
+          promptSubtitle,
+          prompt,
+          answerLine1,
+          answerLine2,
+          answerLine3,
+          answerLine4,
+          answerLine5,
+          answerLine6,
+          answerLine7,
+          answerLine8,
+          answerLine9,
+        };
+      });
     return shuffle(orderedSerializableRowData);
   }
 }

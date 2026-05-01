@@ -127,57 +127,57 @@ export default function Page() {
       )}
       {currentRow?.answerLine2 && (
         <>
-          <div className="select-none">-</div>
-          <div className="text-lg text-center select-none">
+          <div className="text-lg text-center mt-2 select-none">
             {currentRow?.answerLine2}
           </div>
         </>
       )}
       {currentRow?.answerLine3 && (
         <>
-          <div className="select-none">-</div>
-          <div className="text-lg text-center select-none">
+          <div className="text-lg text-center mt-2 select-none">
             {currentRow?.answerLine3}
           </div>
         </>
       )}
       {currentRow?.answerLine4 && (
         <>
-          <div className="select-none">-</div>
-          <div className="text-lg text-center select-none">
+          <div className="text-lg text-center mt-2 select-none">
             {currentRow?.answerLine4}
           </div>
         </>
       )}
       {currentRow?.answerLine5 && (
         <>
-          <div className="select-none">-</div>
-          <div className="text-lg text-center select-none">
+          <div className="text-lg text-center mt-2 select-none">
             {currentRow?.answerLine5}
           </div>
         </>
       )}
       {currentRow?.answerLine6 && (
         <>
-          <div className="select-none">-</div>
-          <div className="text-lg text-center select-none">
+          <div className="text-lg text-center mt-2 select-none">
             {currentRow?.answerLine6}
           </div>
         </>
       )}
       {currentRow?.answerLine7 && (
         <>
-          <div className="select-none">-</div>
-          <div className="text-lg text-center select-none">
+          <div className="text-lg text-center mt-2 select-none">
             {currentRow?.answerLine7}
           </div>
         </>
       )}
       {currentRow?.answerLine8 && (
         <>
-          <div className="select-none">-</div>
-          <div className="text-lg text-center select-none">
+          <div className="text-lg text-center mt-2 select-none">
             {currentRow?.answerLine8}
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine9 && (
+        <>
+          <div className="text-lg text-center mt-2 select-none">
+            {currentRow?.answerLine9}
           </div>
         </>
       )}
@@ -199,26 +199,26 @@ export default function Page() {
 
   return (
     <div className="flex gap-4 justify-center items-center w-full pl-4 pr-4">
-      <Button
-        variant="outline"
-        size="icon"
-        aria-label="Refresh & shuffle"
-        onClick={handleRefresh}
-        className="absolute top-2 left-2 cursor-pointer"
-      >
-        <RefreshCcw />
-      </Button>
       <Link href={`/`}>
         <Button
           variant="outline"
           size="icon"
-          aria-label="Refresh & shuffle"
-          className="absolute top-2 left-1/2 -translate-x-1/2 cursor-pointer"
+          aria-label="Home"
+          className="absolute top-2 left-2 cursor-pointer"
         >
           <House />
         </Button>
       </Link>
       <ThemeModeToggle className="absolute top-2 right-2 cursor-pointer" />
+      <Button
+        variant="outline"
+        size="icon"
+        aria-label="Refresh & shuffle"
+        onClick={handleRefresh}
+        className="absolute bottom-2 right-2 cursor-pointer"
+      >
+        <RefreshCcw />
+      </Button>
       <Button
         variant="outline"
         size="icon"
@@ -228,10 +228,10 @@ export default function Page() {
       >
         <ArrowLeftIcon />
       </Button>
-      <div className="h-96 max-h-dvh min-h-0 w-dvw md:w-2/3 lg:w-1/2 pt-2 pb-2">
+      <div className="max-h-dvh w-dvw md:w-2/3 lg:w-1/2 pt-2 pb-2">
         <Card
           onClick={handleFlipCard}
-          className={`flex flex-col items-center justify-center w-full h-full hover:border cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""}`}
+          className={`flex flex-col min-h-96 max-h-dvh items-center justify-center w-full h-full hover:border cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""} overflow-y-auto`}
         >
           {renderCardContent()}
         </Card>
