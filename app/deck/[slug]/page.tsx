@@ -99,6 +99,11 @@ export default function Page() {
     : null;
   const frontOfCard = (
     <>
+      {currentRow?.pageNumber && (
+        <div className="text-md font-bold  text-center select-none">
+          Page {currentRow?.pageNumber}
+        </div>
+      )}
       {currentRow?.promptTitle && (
         <div className="text-2xl font-bold  text-center select-none">
           {currentRow?.promptTitle}
@@ -118,6 +123,11 @@ export default function Page() {
   );
   const backOfCard = (
     <div className="flex flex-col justify-center items-center">
+      {currentRow?.pageNumber && (
+        <div className="text-md font-bold  text-center select-none">
+          Page {currentRow?.pageNumber}
+        </div>
+      )}
       {currentRow?.answerLine1 && (
         <>
           <div className="text-lg text-center select-none">

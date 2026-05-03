@@ -24,6 +24,7 @@ export async function shuffleGoogleSpreadsheetRows(
         return published === "TRUE";
       })
       .map((row) => {
+        const pageNumber = row.get("page_number");
         const promptTitle = row.get("prompt_title");
         const promptSubtitle = row.get("prompt_subtitle");
         const prompt = row.get("prompt");
@@ -38,6 +39,7 @@ export async function shuffleGoogleSpreadsheetRows(
         const answerLine9 = row.get("answer_line_9");
 
         return {
+          pageNumber,
           promptTitle,
           promptSubtitle,
           prompt,
