@@ -124,7 +124,7 @@ export default function Page() {
   const backOfCard = (
     <div className="flex flex-col justify-center items-center">
       {currentRow?.pageNumber && (
-        <div className="text-md font-bold  text-center select-none">
+        <div className="text-md font-bold text-center select-none">
           Page {currentRow?.pageNumber}
         </div>
       )}
@@ -241,7 +241,7 @@ export default function Page() {
       <div className="max-h-dvh w-dvw md:w-2/3 lg:w-1/2 pt-2 pb-2">
         <Card
           onClick={handleFlipCard}
-          className={`flex flex-col min-h-96 max-h-dvh items-center justify-center w-full h-full hover:border cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""} overflow-y-auto`}
+          className={`flex flex-col min-h-dvh sm:min-h-96 max-h-dvh items-center justify-center-safe w-full h-full hover:border cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""} overflow-y-auto`}
         >
           {renderCardContent()}
         </Card>
