@@ -24,12 +24,12 @@ export default function Home() {
         </Link>
       </MenuItem>
       <MenuItem menuDeck={menuDecks[1]}>
-        <Link href={menuDecks[1]} className="mb-2">
+        <Link href={`/deck/${menuDecks[1]}`} className="mb-2">
           <Button>{`${decks[menuDecks[1]].title}`}</Button>
         </Link>
       </MenuItem>
       <MenuItem menuDeck={menuDecks[2]}>
-        <Link href={menuDecks[2]} className="mb-2">
+        <Link href={`/deck/${menuDecks[2]}`} className="mb-2">
           <Button>{`${decks[menuDecks[2]].title}`}</Button>
         </Link>
       </MenuItem>
