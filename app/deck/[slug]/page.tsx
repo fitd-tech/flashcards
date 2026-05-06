@@ -3,10 +3,25 @@
 import { loadGoogleSpreadsheet } from "@/actions/load-google-spreadsheet";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Spinner } from "@/components/ui/spinner";
 import { ThemeModeToggle } from "@/components/ui/theme-mode-toggle";
 import { SerializableRow, SpreadsheetSlug } from "@/types";
-import { ArrowLeftIcon, ArrowRightIcon, House, RefreshCcw } from "lucide-react";
+import { decks } from "@/utilities/constants";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  House,
+  Info,
+  RefreshCcw,
+} from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ReactNode, useCallback, useContext, useEffect, useState } from "react";
@@ -25,6 +40,9 @@ const BACK = "back";
 export default function Page() {
   const { slug } = useParams();
   console.log("slug", slug);
+
+  const infoText = slug && decks[slug as keyof typeof decks]?.info;
+  console.log("infoText", infoText);
 
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState<SerializableRow[] | null | undefined>(null);
@@ -220,6 +238,24 @@ export default function Page() {
         </Button>
       </Link>
       <ThemeModeToggle className="absolute top-2 right-2 cursor-pointer" />
+      {infoText ? (
+        <Popover>
+          <PopoverTrigger
+            asChild
+            className="absolute bottom-2 left-2 cursor-pointer"
+          >
+            <Button variant="outline">
+              <Info />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>
+              <PopoverTitle>Note</PopoverTitle>
+              <PopoverDescription>{infoText}</PopoverDescription>
+            </PopoverHeader>
+          </PopoverContent>
+        </Popover>
+      ) : null}
       <Button
         variant="outline"
         size="icon"

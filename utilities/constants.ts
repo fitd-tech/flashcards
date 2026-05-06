@@ -12,6 +12,7 @@ export enum Env {
 type Deck = {
   title: string;
   env: string;
+  info?: string;
 };
 
 export const decks: Record<string, Deck> = {
@@ -22,6 +23,9 @@ export const decks: Record<string, Deck> = {
   "andy-elliott-objections": {
     title: "Andy Elliott Objections",
     env: Env.PROD,
+    info: `Please change any of Andy's mentions of COVID to something more
+              relevant to today. "What's going on overseas" is always a good
+              option, as there's always something going on overseas!`,
   },
   "vehicle-specs": {
     title: "Vehicle Specs",
