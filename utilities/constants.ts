@@ -29,6 +29,6 @@ export const decks: Record<string, Deck> = {
   },
   "vehicle-specs": {
     title: "Vehicle Specs",
-    env: Env.DEV,
+    env: Env.PROD,
   },
 };
