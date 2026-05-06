@@ -241,7 +241,7 @@ export default function Page() {
       <div className="max-h-svh w-dvw md:w-2/3 lg:w-1/2 pt-2 pb-2">
         <Card
           onClick={handleFlipCard}
-          className={`flex flex-col min-h-svh sm:min-h-96 max-h-svh items-center justify-center-safe w-full h-full hover:border cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""} overflow-y-auto`}
+          className={`flex flex-col min-h-svh md:min-h-96 max-h-svh items-center justify-center-safe w-full h-full hover:border cursor-pointer p-4 ${currentSide === BACK ? "bg-(--card-back)" : ""} overflow-y-auto`}
         >
           {renderCardContent()}
         </Card>
