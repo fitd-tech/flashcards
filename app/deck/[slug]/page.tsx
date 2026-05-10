@@ -24,7 +24,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ReactNode, useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Markdown from "react-markdown";
 
 type Card = {
   id: number;
@@ -149,63 +150,70 @@ export default function Page() {
       {currentRow?.answerLine1 && (
         <>
           <div className="text-lg text-center select-none">
-            {currentRow?.answerLine1}
+            <Markdown>{currentRow?.answerLine1}</Markdown>
           </div>
         </>
       )}
       {currentRow?.answerLine2 && (
         <>
           <div className="text-lg text-center mt-2 select-none">
-            {currentRow?.answerLine2}
+            <Markdown>{currentRow?.answerLine2}</Markdown>
           </div>
         </>
       )}
       {currentRow?.answerLine3 && (
         <>
           <div className="text-lg text-center mt-2 select-none">
-            {currentRow?.answerLine3}
+            <Markdown>{currentRow?.answerLine3}</Markdown>
           </div>
         </>
       )}
       {currentRow?.answerLine4 && (
         <>
           <div className="text-lg text-center mt-2 select-none">
-            {currentRow?.answerLine4}
+            <Markdown>{currentRow?.answerLine4}</Markdown>
           </div>
         </>
       )}
       {currentRow?.answerLine5 && (
         <>
           <div className="text-lg text-center mt-2 select-none">
-            {currentRow?.answerLine5}
+            <Markdown>{currentRow?.answerLine5}</Markdown>
           </div>
         </>
       )}
       {currentRow?.answerLine6 && (
         <>
           <div className="text-lg text-center mt-2 select-none">
-            {currentRow?.answerLine6}
+            <Markdown>{currentRow?.answerLine6}</Markdown>
           </div>
         </>
       )}
       {currentRow?.answerLine7 && (
         <>
           <div className="text-lg text-center mt-2 select-none">
-            {currentRow?.answerLine7}
+            <Markdown>{currentRow?.answerLine7}</Markdown>
           </div>
         </>
       )}
       {currentRow?.answerLine8 && (
         <>
           <div className="text-lg text-center mt-2 select-none">
-            {currentRow?.answerLine8}
+            <Markdown>{currentRow?.answerLine8}</Markdown>
           </div>
         </>
       )}
       {currentRow?.answerLine9 && (
         <>
           <div className="text-lg text-center mt-2 select-none">
-            {currentRow?.answerLine9}
+            <Markdown>{currentRow?.answerLine9}</Markdown>
+          </div>
+        </>
+      )}
+      {currentRow?.answerLine10 && (
+        <>
+          <div className="text-lg text-center mt-2 select-none">
+            <Markdown>{currentRow?.answerLine10}</Markdown>
           </div>
         </>
       )}

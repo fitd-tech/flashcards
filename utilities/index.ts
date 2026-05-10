@@ -37,6 +37,7 @@ export async function shuffleGoogleSpreadsheetRows(
         const answerLine7 = row.get("answer_line_7");
         const answerLine8 = row.get("answer_line_8");
         const answerLine9 = row.get("answer_line_9");
+        const answerLine10 = row.get("answer_line_10");
 
         return {
           pageNumber,
@@ -52,6 +53,7 @@ export async function shuffleGoogleSpreadsheetRows(
           answerLine7,
           answerLine8,
           answerLine9,
+          answerLine10,
         };
       });
     return shuffle(orderedSerializableRowData);
