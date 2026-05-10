@@ -2,6 +2,7 @@ export const spreadsheetSlugToEnvVar = {
   "vehicle-specs": "CHEVY_VEHICLE_SPECS_SHEET_ID",
   "sales-representative": "SALES_REPRESENTATIVE_SHEET_ID",
   "andy-elliott-objections": "ANDY_ELLIOTT_OBJECTIONS_SHEET_ID",
+  "sales-consultant-guide": "SALES_CONSULTANT_GUIDE_SHEET_ID",
 };
 
 export enum Env {
@@ -30,5 +31,10 @@ export const decks: Record<string, Deck> = {
   "vehicle-specs": {
     title: "Vehicle Specs",
     env: Env.PROD,
+  },
+  "sales-consultant-guide": {
+    title: "Sales Consultant Guide",
+    env: Env.PROD,
+    info: "This information is from the Lithia Sales Consultant Guide. Please get a copy from your supervisor if you don't have one.",
   },
 };

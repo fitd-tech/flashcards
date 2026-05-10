@@ -11,6 +11,7 @@ const menuDecks = [
   "sales-representative",
   "andy-elliott-objections",
   "vehicle-specs",
+  "sales-consultant-guide",
 ];
 
 export default function Home() {
@@ -31,6 +32,11 @@ export default function Home() {
       <MenuItem menuDeck={menuDecks[2]}>
         <Link href={`/deck/${menuDecks[2]}`} className="mb-2">
           <Button>{`${decks[menuDecks[2]].title}`}</Button>
+        </Link>
+      </MenuItem>
+      <MenuItem menuDeck={menuDecks[3]}>
+        <Link href={`/deck/${menuDecks[3]}`} className="mb-2">
+          <Button>{`${decks[menuDecks[3]].title}`}</Button>
         </Link>
       </MenuItem>
     </>
