@@ -8,10 +8,10 @@ import { decks } from "@/utilities/constants";
 import Link from "next/link";
 
 const menuDecks = [
-  "sales-representative",
-  "andy-elliott-objections",
-  "vehicle-specs",
   "sales-consultant-guide",
+  "vehicle-specs",
+  "andy-elliott-objections",
+  "sales-representative",
 ];
 
 export default function Home() {
