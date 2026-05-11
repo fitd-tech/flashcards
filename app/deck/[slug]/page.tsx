@@ -129,7 +129,7 @@ export default function Page() {
         </div>
       )}
       {currentRow?.promptSubtitle && (
-        <div className="text-xl font-semibold  text-center select-none">
+        <div className="text-xl font-semibold  text-center select-none -mt-4">
           {currentRow?.promptSubtitle}
         </div>
       )}
