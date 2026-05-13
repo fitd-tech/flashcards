@@ -35,6 +35,6 @@ export const decks: Record<string, Deck> = {
   "sales-consultant-guide": {
     title: "Lithia Sales Consultant Guide",
     env: Env.PROD,
-    info: "This information is from the Lithia Sales Consultant Guide. Please get a copy from your supervisor if you don't have one.",
+    info: "This information is from the Lithia Sales Consultant Guide. Please get a copy from your supervisor if you don't have one. Content additions are in progress.",
   },
 };
