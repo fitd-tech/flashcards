@@ -40,10 +40,8 @@ const BACK = "back";
 
 export default function Page() {
   const { slug } = useParams();
-  console.log("slug", slug);
 
   const infoText = slug && decks[slug as keyof typeof decks]?.info;
-  console.log("infoText", infoText);
 
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState<SerializableRow[] | null | undefined>(null);
@@ -98,7 +96,6 @@ export default function Page() {
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      console.log("e.key from handelKeyDown", e.key);
       if (e.key === "ArrowLeft") {
         handleGoBack();
       } else if (e.key === "ArrowRight") {
@@ -220,7 +217,8 @@ export default function Page() {
     </div>
   );
 
-  function handleRefresh() {
+  function handleRefresh(e: React.MouseEvent<HTMLButtonElement>) {
+    e.currentTarget.blur();
     refresh?.();
     setCurrentSide(FRONT);
   }

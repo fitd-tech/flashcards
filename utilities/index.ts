@@ -17,7 +17,6 @@ export async function shuffleGoogleSpreadsheetRows(
   if (spreadsheet) {
     const worksheet = spreadsheet.sheetsByIndex[0]; // or use `doc.sheetsById[id]` or `doc.sheetsByTitle[title]`
     const rows = await worksheet.getRows();
-    console.log("rows", rows);
     const orderedSerializableRowData = rows
       .filter((row) => {
         const published = row.get("published");
